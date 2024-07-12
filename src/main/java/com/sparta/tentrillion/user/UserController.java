@@ -2,11 +2,12 @@ package com.sparta.tentrillion.user;
 
 import com.sparta.tentrillion.aop.Envelop;
 import com.sparta.tentrillion.global.argumentResolver.annotation.LoginUser;
+import com.sparta.tentrillion.security.service.JwtService;
 import com.sparta.tentrillion.user.dto.request.LoginRequestDto;
 import com.sparta.tentrillion.user.dto.request.UserRequestDto;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,16 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/gettest")
-    public ResponseEntity<String> getTest(@LoginUser User user) {
-        return ResponseEntity.status(HttpStatus.OK).body(user.getUsername());
+    @GetMapping("/reissue")
+    public ResponseEntity<Void> reIssue(HttpServletRequest request, HttpServletResponse response) {
+        String refreshToken = request.getHeader(JwtService.REFRESH_HEADER);
+        userService.reIssue(refreshToken, response);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<Void> logout(@LoginUser User user) {
+        userService.logout(user);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
