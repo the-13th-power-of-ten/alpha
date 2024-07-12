@@ -112,7 +112,7 @@ public class UserService {
         );
     }
 
-    private User findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(
                 () -> new BusinessException(ErrorCode.USER_NOT_FOUND)
         );
