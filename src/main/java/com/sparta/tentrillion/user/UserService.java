@@ -21,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+import static com.sparta.tentrillion.global.exception.ErrorCode.USER_NOT_FOUND;
+
 @Service
 @Getter
 @RequiredArgsConstructor
@@ -129,5 +131,26 @@ public class UserService {
         } else {
             return false;
         }
+    }
+
+    public User findUserByRefreshToken(String refreshToken) {
+        return userRepository.findByRefreshToken(refreshToken)
+                .orElseThrow(
+                        () -> new BusinessException(USER_NOT_FOUND)
+                );
+    }
+
+    public User findUserById(long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(
+                        () -> new BusinessException(USER_NOT_FOUND)
+                );
+    }
+
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(
+                        () -> new BusinessException(USER_NOT_FOUND)
+                );
     }
 }
