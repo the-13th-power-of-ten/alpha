@@ -21,7 +21,6 @@ public enum ErrorCode {
     REFRESH_TOKEN_NOT_MATCHES(HttpStatus.UNAUTHORIZED, "REFRESH TOKEN IS NOT MATCHES"),
     UNAUTHORIZED_USER(HttpStatus.FORBIDDEN, "USER IS NOT AUTHORIZED"),
 
-
     //Board
     BOARD_NOT_FOUND(HttpStatus.NOT_FOUND, "BOARD NOT FOUND."),
     BOARD_NOT_INVITED(HttpStatus.NOT_FOUND, "NOT INVITED TO BOARD."),
@@ -31,16 +30,9 @@ public enum ErrorCode {
 
     // Column
 
-
-
-
     // Card
 
-
-
     // Comment
-
-    ;
 
     ;
     private final HttpStatus status;
