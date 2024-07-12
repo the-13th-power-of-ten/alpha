@@ -134,7 +134,7 @@ public class UserService {
     }
 
     public User findUserByRefreshToken(String refreshToken) {
-        return userRepository.findByRefreshToken(refreshToken)
+        return userRepository.findByRefreshtoken(refreshToken)
                 .orElseThrow(
                         () -> new BusinessException(USER_NOT_FOUND)
                 );

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoardRequestDto {
 
-    @NotNull(message = "보드 제목을 입력해주세요.")
+    @NotNull(message = "Enter the title of the board.")
     private String title;
 
-    @NotNull(message = "보드 설명을 입력해주세요.")
+    @NotNull(message = "Enter the description of the board.")
     private String description;
 }

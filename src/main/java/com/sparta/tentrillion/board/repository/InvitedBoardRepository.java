@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InvitedBoardRepository extends JpaRepository<InvitedBoard, Long> {
+public interface InvitedBoardRepository extends JpaRepository<InvitedBoard, Long>, BoardQRepository {
 
     InvitedBoard findByBoardAndSenderAndReceiver(Board board, User sender, User receiver);
 
