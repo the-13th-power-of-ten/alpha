@@ -1,5 +1,6 @@
-package com.sparta.tentrillion.board;
+package com.sparta.tentrillion.board.entity;
 
+import com.sparta.tentrillion.board.dto.request.BoardRequestDto;
 import com.sparta.tentrillion.global.TimeStamp;
 import com.sparta.tentrillion.user.User;
 import jakarta.persistence.*;
@@ -26,6 +27,17 @@ public class Board extends TimeStamp {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public Board(BoardRequestDto requestDto, User user) {
+        this.title = requestDto.getTitle();
+        this.description = requestDto.getDescription();
+        this.user = user;
+    }
+
+    public void update(BoardRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.description = requestDto.getDescription();
+    }
 }
 
 
