@@ -32,7 +32,7 @@ public class BoardController {
     public ResponseEntity<BoardResponseDto> createBoard(@RequestBody @Valid BoardRequestDto requestDto,
                                                         @RequestHeader(value = "RefreshToken") String refreshToken,
                                                         @LoginUser User loginUser) {
-        User user = userService.findUserByRefreshToken(refreshToken);
+        User user = userService.findByRefreshToken(refreshToken);
         if (!user.getUsername().equals(loginUser.getUsername())) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
@@ -51,7 +51,7 @@ public class BoardController {
                                                         @RequestBody @Valid BoardRequestDto requestDto,
                                                         @RequestHeader(value = "RefreshToken") String refreshToken,
                                                         @LoginUser User loginUser) {
-        User user = userService.findUserByRefreshToken(refreshToken);
+        User user = userService.findByRefreshToken(refreshToken);
         if (!user.getUsername().equals(loginUser.getUsername())) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
@@ -69,7 +69,7 @@ public class BoardController {
     public ResponseEntity deleteBoard(@PathVariable long boardId,
                                       @RequestHeader(value = "RefreshToken") String refreshToken,
                                       @LoginUser User loginUser) {
-        User user = userService.findUserByRefreshToken(refreshToken);
+        User user = userService.findByRefreshToken(refreshToken);
         if (!user.getUsername().equals(loginUser.getUsername())) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
@@ -88,7 +88,7 @@ public class BoardController {
                                         @RequestBody @Valid InviteBoardRequestDto requestDto,
                                         @RequestHeader(value = "RefreshToken") String refreshToken,
                                         @LoginUser User loginUser) {
-        User sender = userService.findUserByRefreshToken(refreshToken);
+        User sender = userService.findByRefreshToken(refreshToken);
         if (!sender.getUsername().equals(loginUser.getUsername())) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
@@ -105,7 +105,7 @@ public class BoardController {
     @GetMapping
     public ResponseEntity<List<BoardResponseDto>> getAllBoards(@RequestHeader(value = "RefreshToken") String refreshToken,
                                                                @LoginUser User loginUser) {
-        User user = userService.findUserByRefreshToken(refreshToken);
+        User user = userService.findByRefreshToken(refreshToken);
         if (!user.getUsername().equals(loginUser.getUsername())) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }

@@ -108,7 +108,7 @@ public class UserService {
         user.updateRefreshToken(null);
     }
 
-    private  User findByRefreshToken(String refreshToken) {
+    public User findByRefreshToken(String refreshToken) {
         return userRepository.findByRefreshtoken(refreshToken).orElseThrow(
                 () -> new BusinessException(ErrorCode.USER_NOT_FOUND)
         );
@@ -131,23 +131,5 @@ public class UserService {
         } else {
             return false;
         }
-    }
-
-    public User findUserByRefreshToken(String refreshToken) {
-        return userRepository.findByRefreshtoken(refreshToken).orElseThrow(
-                () -> new BusinessException(USER_NOT_FOUND)
-        );
-    }
-
-    public User findUserById(long userId) {
-        return userRepository.findById(userId).orElseThrow(
-                () -> new BusinessException(USER_NOT_FOUND)
-        );
-    }
-
-    public User findUserByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(
-                () -> new BusinessException(USER_NOT_FOUND)
-        );
     }
 }

@@ -58,7 +58,7 @@ public class BoardService {
     public void inviteToBoard(long boardId, InviteBoardRequestDto requestDto, User sender) {
         Board board = findBoardById(boardId);
 
-        User receiver = userService.findUserByUsername(requestDto.getUsername());
+        User receiver = userService.findByUsername(requestDto.getUsername());
 
         if (sender.getUsername().equals(receiver.getUsername())) {
             throw new BusinessException(CANNOT_INVITE_MYSELF);
