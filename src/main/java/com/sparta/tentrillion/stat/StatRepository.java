@@ -1,4 +1,6 @@
 package com.sparta.tentrillion.stat;
 
-public interface StatRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StatRepository extends JpaRepository<Stat, Long> {
 }

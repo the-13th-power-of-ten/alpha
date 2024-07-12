@@ -1,4 +1,4 @@
-package com.sparta.tentrillion.card;
+package com.sparta.tentrillion.card.entity;
 
 import com.sparta.tentrillion.comment.Comment;
 import com.sparta.tentrillion.global.TimeStamp;
@@ -38,7 +38,7 @@ public class Card extends TimeStamp {
 
     @ManyToOne
     @JoinColumn(name = "asignee_id")
-    private User asignee;
+    private User assignee;
 
     @ManyToOne
     @JoinColumn(name = "creator_id", nullable = false)
