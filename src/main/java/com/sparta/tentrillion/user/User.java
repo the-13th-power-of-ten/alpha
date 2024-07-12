@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.user;
 
-import com.sparta.tentrillion.board.Board;
+import com.sparta.tentrillion.board.entity.Board;
 import com.sparta.tentrillion.global.TimeStamp;
 import jakarta.persistence.*;
 import lombok.*;
