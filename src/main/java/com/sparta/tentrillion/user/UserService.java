@@ -134,23 +134,20 @@ public class UserService {
     }
 
     public User findUserByRefreshToken(String refreshToken) {
-        return userRepository.findByRefreshtoken(refreshToken)
-                .orElseThrow(
-                        () -> new BusinessException(USER_NOT_FOUND)
-                );
+        return userRepository.findByRefreshtoken(refreshToken).orElseThrow(
+                () -> new BusinessException(USER_NOT_FOUND)
+        );
     }
 
     public User findUserById(long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(
-                        () -> new BusinessException(USER_NOT_FOUND)
-                );
+        return userRepository.findById(userId).orElseThrow(
+                () -> new BusinessException(USER_NOT_FOUND)
+        );
     }
 
     public User findUserByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(
-                        () -> new BusinessException(USER_NOT_FOUND)
-                );
+        return userRepository.findByUsername(username).orElseThrow(
+                () -> new BusinessException(USER_NOT_FOUND)
+        );
     }
 }
