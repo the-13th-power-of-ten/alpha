@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.board.dto.request;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class InviteBoardRequestDto {
 
-    @NotNull(message = "Enter the user's ID to invite.")
+    @NotBlank(message = "Enter the user's ID to invite.")
     private String username;
-
 }
