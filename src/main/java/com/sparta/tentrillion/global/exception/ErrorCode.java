@@ -12,21 +12,29 @@ public enum ErrorCode {
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "BAD REQUEST"),
     FORBIDDEN(HttpStatus.FORBIDDEN, "FORBIDDEN"),
     NOT_FOUND(HttpStatus.NOT_FOUND, "NOT FOUND"),
+    NOT_ADMIN(HttpStatus.BAD_REQUEST, "NOT ADMIN" ),
 
     // User
     USER_INACTIVITY(HttpStatus.FORBIDDEN, "USER STATUS IS INACTIVITY"),
     FAIL_AUTHENTICATION(HttpStatus.BAD_REQUEST, "USERNAME OR PASSWORD IS NOT CORRECT"),
 
+
     //Board
+
 
     // Column
 
+
+
+
     // Card
+
+
 
     // Comment
 
-    ;
 
+    ;
     private final HttpStatus status;
     private final String message;
 }
