@@ -34,6 +34,6 @@ public class Stat extends TimeStamp {
 
 
     public void updateStat(String title) {
-        this.title =title;
+        this.title = title;
     }
 }

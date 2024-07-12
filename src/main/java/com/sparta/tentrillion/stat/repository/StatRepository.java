@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.stat.repository;
 
-import com.sparta.tentrillion.board.Board;
+import com.sparta.tentrillion.board.entity.Board;
 import com.sparta.tentrillion.stat.entity.Stat;
 import org.springframework.data.jpa.repository.JpaRepository;
 

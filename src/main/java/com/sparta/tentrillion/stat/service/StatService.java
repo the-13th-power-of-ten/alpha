@@ -1,7 +1,7 @@
 package com.sparta.tentrillion.stat.service;
 
-import com.sparta.tentrillion.board.Board;
-import com.sparta.tentrillion.board.BoardService;
+import com.sparta.tentrillion.board.entity.Board;
+import com.sparta.tentrillion.board.service.BoardService;
 import com.sparta.tentrillion.global.exception.BusinessException;
 import com.sparta.tentrillion.global.exception.ErrorCode;
 import com.sparta.tentrillion.stat.dto.StatRequestDto;
@@ -24,7 +24,7 @@ public class StatService {
 
     @Transactional
     public StatResponseDto createStat(StatRequestDto statRequestDto, User user, Long boardId) {
-        if(!user.getRole().equals(User.Role.MANAGER)){
+        if (!user.getRole().equals(User.Role.MANAGER)) {
             throw new BusinessException(ErrorCode.NOT_ADMIN);
         }
         // board 찾기
@@ -42,13 +42,13 @@ public class StatService {
 
     @Transactional
     public StatResponseDto updateStat(StatRequestDto statRequestDto, Long boardId, User user, Long statId) {
-        if(!user.getRole().equals(User.Role.MANAGER)){
+        if (!user.getRole().equals(User.Role.MANAGER)) {
             throw new BusinessException(ErrorCode.NOT_ADMIN);
         }
         //board 찾기
         Board board = boardService.findBoardById(boardId);
         //stat 찾기
-        Stat stat = statRepository.findByBoardIdAndStatId(board ,statId).orElseThrow(()->
+        Stat stat = statRepository.findByBoardIdAndStatId(board, statId).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_FOUND));
         //찾은 stat update
         stat.updateStat(statRequestDto.getTitle());
@@ -57,13 +57,13 @@ public class StatService {
 
     @Transactional
     public StatResponseDto deleteStat(Long boardId, Long statId, User user) {
-        if(!user.getRole().equals(User.Role.MANAGER)){
+        if (!user.getRole().equals(User.Role.MANAGER)) {
             throw new BusinessException(ErrorCode.NOT_ADMIN);
         }
         //board 찾기
         Board board = boardService.findBoardById(boardId);
         // 해당 stat 찾기
-        Stat stat = statRepository.findById(statId).orElseThrow(()->
+        Stat stat = statRepository.findById(statId).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_FOUND));
         statRepository.delete(stat);
         return new StatResponseDto(stat);
