@@ -5,6 +5,7 @@ import com.sparta.tentrillion.board.dto.request.InviteBoardRequestDto;
 import com.sparta.tentrillion.board.dto.response.BoardResponseDto;
 import com.sparta.tentrillion.board.entity.Board;
 import com.sparta.tentrillion.board.service.BoardService;
+import com.sparta.tentrillion.global.argumentResolver.annotation.LoginUser;
 import com.sparta.tentrillion.global.exception.BusinessException;
 import com.sparta.tentrillion.user.User;
 import com.sparta.tentrillion.user.UserService;
@@ -118,6 +119,9 @@ public class BoardController {
         // senderId
         // TODO 가입되지 않은 사용자 user.findByRefreshToken == null
         User sender = userService.findUserByRefreshToken(refreshToken);
+        if (!sender.equals(userDetails.getUser())) {
+            throw new BusinessException(UNAUTHORIZED_USER);
+        }
 
         // TODO Manager 가 아닌데 초대: access token으로부터 user.getRole != "Manager"
         if (User.Role.USER.equals(sender.getRole())) {
@@ -141,6 +145,9 @@ public class BoardController {
         // senderId
         // TODO 가입되지 않은 사용자 user.findByRefreshToken == null
         User user = userService.findUserByRefreshToken(refreshToken);
+        if (!user.equals(userDetails.getUser())) {
+            throw new BusinessException(UNAUTHORIZED_USER);
+        }
 
         // TODO ”msg”: “보드 목록 조회 완료” “status” : 200
         //      result
