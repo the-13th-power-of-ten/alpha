@@ -1,4 +1,4 @@
-package com.sparta.tentrillion.comment;
+package com.sparta.tentrillion.comment.entity;
 
 import com.sparta.tentrillion.card.Card;
 import com.sparta.tentrillion.global.TimeStamp;

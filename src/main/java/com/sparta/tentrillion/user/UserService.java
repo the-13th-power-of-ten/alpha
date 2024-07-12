@@ -83,7 +83,36 @@ public class UserService {
         }
     }
 
-    private User findByUsername(String username) {
+    @Transactional
+    public void reIssue(String refreshToken, HttpServletResponse response) {
+        User user = findByRefreshToken(refreshToken);
+
+        if (!refreshToken.equals(user.getRefreshtoken())) {
+            throw new BusinessException(ErrorCode.REFRESH_TOKEN_NOT_MATCHES);
+        }
+
+        String newAccessToken = jwtService.createAccessToken(user);
+        String newRefreshToken = jwtService.createRefreshToken();
+
+        user.updateRefreshToken(newRefreshToken);
+
+        response.addHeader(HttpHeaders.AUTHORIZATION, newAccessToken);
+        response.addHeader(JwtService.REFRESH_HEADER, newRefreshToken);
+    }
+
+    @Transactional
+    public void logout(User loginUser) {
+        User user = findByUsername(loginUser.getUsername());
+        user.updateRefreshToken(null);
+    }
+
+    private  User findByRefreshToken(String refreshToken) {
+        return userRepository.findByRefreshtoken(refreshToken).orElseThrow(
+                () -> new BusinessException(ErrorCode.USER_NOT_FOUND)
+        );
+    }
+
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(
                 () -> new BusinessException(ErrorCode.NOT_FOUND)
         );
