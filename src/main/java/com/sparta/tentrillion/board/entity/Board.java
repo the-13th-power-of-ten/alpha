@@ -6,6 +6,8 @@ import com.sparta.tentrillion.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
@@ -27,6 +29,9 @@ public class Board extends TimeStamp {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InvitedBoard> invitedBoard;
 
     public Board(BoardRequestDto requestDto, User user) {
         this.title = requestDto.getTitle();
