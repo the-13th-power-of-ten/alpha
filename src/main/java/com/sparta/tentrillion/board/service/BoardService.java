@@ -34,78 +34,68 @@ public class BoardService {
     }
 
     @Transactional
-    public BoardResponseDto updateBoard(long boardId, BoardRequestDto requestDto) {
-        // TODO 보드가 없는 경우
+    public BoardResponseDto updateBoard(long boardId, BoardRequestDto requestDto, User user) {
         Board board = findBoardById(boardId);
 
-        board.update(requestDto);
-        boardRepository.save(board);
+        if (board.getUser().getId() == user.getId() || checkSenderInvited(user, board)) {
+            board.update(requestDto);
+            boardRepository.save(board);
+        }
+
         return new BoardResponseDto(board);
     }
 
     @Transactional
-    public void deleteBoard(long boardId) {
-        // TODO 이미 삭제된 보드인 경우 = 없는 보드인 경우 : boardRepo.findById(boardId) == null
+    public void deleteBoard(long boardId, User user) {
         Board board = findBoardById(boardId);
 
-        boardRepository.delete(board);
+        if (board.getUser().getId() == user.getId() || checkSenderInvited(user, board)) {
+            boardRepository.delete(board);
+        }
     }
 
-    // TODO 어느 보드(boardId)에 누가(senderId) 누구(receiverId)를 초대함.
     @Transactional
     public void inviteToBoard(long boardId, InviteBoardRequestDto requestDto, User sender) {
-        // TODO 없는 보드 boardRepo.findById(barodId) == null
         Board board = findBoardById(boardId);
 
-        // receiverId
-        // TODO 초대받은 사람이 가입자인지 확인 user.findByEmail == null. requestDto
         User receiver = userService.findUserByUsername(requestDto.getUsername());
 
-        // TODO Manager 지만 본인이 생성하지 않은 보드
-        //      board.getUser.getId != senderId
-        if (board.getUser().getId() != sender.getId()) {
-            throw new BusinessException(UNAUTHORIZED_USER);
+        if (sender.getUsername().equals(receiver.getUsername())) {
+            throw new BusinessException(CANNOT_INVITE_MYSELF);
         }
 
-        // TODO Manager 지만 초대되지 않은 보드에 초대
-        //      invitedBoard에 저장된 보드,리시버 = 보드아이디 senderId 조합이 있으면 초대된 것.
-        checkSenderInvited(sender, board);
+        checkReceiverInvited(receiver, board);
 
-        // TODO 이미 해당 보드에 초대된 사용자 invitedBoards.getReceiver.getid == receiverId
-        // sender가 이미 receiver를 board에 초대한 적 있는지 조회.
-        checkReceiverInvited(sender, receiver, board);
-
-        InvitedBoard invitedBoard = new InvitedBoard(sender, receiver, board);
-        invitedBoardRepository.save(invitedBoard);
-
+        if (board.getUser().getId() == sender.getId() || checkSenderInvited(sender, board)) {
+            InvitedBoard invitedBoard = new InvitedBoard(sender, receiver, board);
+            invitedBoardRepository.save(invitedBoard);
+        }
     }
 
     @Transactional(readOnly = true)
     public List<BoardResponseDto> getAllInvitedBoards(User user) {
-        // TODO 초대받은 보드만 조회
         List<Board> boardList = invitedBoardRepository.findAllInvitedBoards(user);
         return boardList.stream().map(BoardResponseDto::new).toList();
     }
 
-    public void checkSenderInvited(User sender, Board board) {
+    public boolean checkSenderInvited(User sender, Board board) {
         InvitedBoard invitedBoard = invitedBoardRepository.findByBoardAndReceiver(board, sender);
         if (invitedBoard == null) {
             throw new BusinessException(BOARD_NOT_INVITED);
         }
+        return true;
     }
 
-    public void checkReceiverInvited(User sender, User receiver, Board board) {
-        InvitedBoard invitedBoard = invitedBoardRepository.findByBoardAndSenderAndReceiver(board, sender, receiver);
+    public void checkReceiverInvited(User receiver, Board board) {
+        InvitedBoard invitedBoard = invitedBoardRepository.findByBoardAndReceiver(board, receiver);
         if (invitedBoard != null) {
             throw new BusinessException(BOARD_ALREADY_INVITED);
         }
     }
 
     public Board findBoardById(long boardId) {
-        return boardRepository.findById(boardId)
-                .orElseThrow(
-                        () -> new BusinessException(BOARD_NOT_FOUND)
-                );
+        return boardRepository.findById(boardId).orElseThrow(
+                () -> new BusinessException(BOARD_NOT_FOUND)
+        );
     }
-
 }

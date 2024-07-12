@@ -9,7 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InvitedBoardRepository extends JpaRepository<InvitedBoard, Long>, BoardQRepository {
 
-    InvitedBoard findByBoardAndSenderAndReceiver(Board board, User sender, User receiver);
-
     InvitedBoard findByBoardAndReceiver(Board board, User sender);
 }
