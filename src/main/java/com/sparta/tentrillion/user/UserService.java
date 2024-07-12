@@ -1,9 +1,23 @@
 package com.sparta.tentrillion.user;
 
+import com.sparta.tentrillion.global.exception.BusinessException;
+import com.sparta.tentrillion.global.exception.ErrorCode;
+import com.sparta.tentrillion.security.principal.UserPrincipal;
+import com.sparta.tentrillion.security.service.JwtService;
+import com.sparta.tentrillion.user.dto.request.LoginRequestDto;
 import com.sparta.tentrillion.user.dto.request.UserRequestDto;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -12,8 +26,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final static String MANAGER_CODE = "zhemtpwnfdpsmseoajflrkdlTek";
+    private final AuthenticationManager authenticationManager;
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final JwtService jwtService;
+    private final static String MANAGER_CODE = "zhemtpwnfdpsmseoajflrkdlTek";
 
     public User createUser(UserRequestDto userRequestDto) {
 
@@ -29,7 +46,7 @@ public class UserService {
         }
         User user = User.builder()
                 .username(userRequestDto.getUsername())
-                .password(userRequestDto.getPassword())
+                .password(passwordEncoder.encode(userRequestDto.getPassword()))
                 .email(userRequestDto.getEmail())
                 .nickname(userRequestDto.getNickname())
                 .role(role)
@@ -37,6 +54,39 @@ public class UserService {
                 .build();
 
         return userRepository.save(user);
+    }
+
+    @Transactional
+    public void login(LoginRequestDto requestDto, HttpServletResponse response) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            requestDto.getUsername(),
+                            requestDto.getPassword(),
+                            null
+                    )
+            );
+            UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+            User user = findByUsername(userPrincipal.getUsername());
+
+            String accessToken = jwtService.createAccessToken(user);
+            String refreshToken = jwtService.createRefreshToken();
+
+            user.updateRefreshToken(refreshToken);
+
+            response.addHeader(HttpHeaders.AUTHORIZATION, accessToken);
+            response.addHeader(JwtService.REFRESH_HEADER, refreshToken);
+        } catch (DisabledException e) {
+            throw new BusinessException(ErrorCode.USER_INACTIVITY);
+        } catch (AuthenticationException e) {
+            throw new BusinessException(ErrorCode.FAIL_AUTHENTICATION);
+        }
+    }
+
+    private User findByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(
+                () -> new BusinessException(ErrorCode.NOT_FOUND)
+        );
     }
 
     private boolean isExist(String username) {
