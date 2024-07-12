@@ -40,6 +40,7 @@ public enum ErrorCode {
 
     // Comment
 
+    ;
 
     ;
     private final HttpStatus status;
