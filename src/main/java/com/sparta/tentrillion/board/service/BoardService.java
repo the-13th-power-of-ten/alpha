@@ -1,13 +1,12 @@
 package com.sparta.tentrillion.board.service;
 
-import com.sparta.tentrillion.board.repository.BoardQRepository;
-import com.sparta.tentrillion.board.repository.BoardRepository;
-import com.sparta.tentrillion.board.repository.InvitedBoardRepository;
 import com.sparta.tentrillion.board.dto.request.BoardRequestDto;
 import com.sparta.tentrillion.board.dto.request.InviteBoardRequestDto;
 import com.sparta.tentrillion.board.dto.response.BoardResponseDto;
 import com.sparta.tentrillion.board.entity.Board;
 import com.sparta.tentrillion.board.entity.InvitedBoard;
+import com.sparta.tentrillion.board.repository.BoardRepository;
+import com.sparta.tentrillion.board.repository.InvitedBoardRepository;
 import com.sparta.tentrillion.global.exception.BusinessException;
 import com.sparta.tentrillion.user.User;
 import com.sparta.tentrillion.user.UserService;
@@ -25,7 +24,6 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     private final InvitedBoardRepository invitedBoardRepository;
-    private final BoardQRepository boardQRepository;
     private final UserService userService;
 
     @Transactional
@@ -85,7 +83,7 @@ public class BoardService {
     @Transactional(readOnly = true)
     public List<BoardResponseDto> getAllInvitedBoards(User user) {
         // TODO 초대받은 보드만 조회
-        List<Board> boardList = boardQRepository.findAllInvitedBoards(user);
+        List<Board> boardList = invitedBoardRepository.findAllInvitedBoards(user);
         return boardList.stream().map(BoardResponseDto::new).toList();
     }
 

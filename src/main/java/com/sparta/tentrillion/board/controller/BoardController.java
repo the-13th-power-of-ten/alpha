@@ -13,9 +13,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import  com.sparta.tentrillion.security.principal.UserPrincipal;
 
 import java.util.List;
 
@@ -33,12 +31,12 @@ public class BoardController {
     @PostMapping
     public ResponseEntity<BoardResponseDto> createBoard(@RequestBody @Valid BoardRequestDto requestDto,
                                                         @RequestHeader(value = "RefreshToken") String refreshToken,
-                                                        @AuthenticationPrincipal UserPrincipal userDetails) {
+                                                        @LoginUser User loginUser) {
         // TODO 리프레시 토큰으로 유저 조회
         // 없으면 에러 반환
         // 시큐리티 인증객체의 값과도 비교
         User user = userService.findUserByRefreshToken(refreshToken);
-        if (!user.equals(userDetails.getUser())) {
+        if (!user.equals(loginUser)) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
 
@@ -49,7 +47,7 @@ public class BoardController {
 
         // TODO 응답 : "msg" : “보드 생성 완료” “status” : 201
         //              result
-        BoardResponseDto responseDto = boardService.createBoard(requestDto,user);
+        BoardResponseDto responseDto = boardService.createBoard(requestDto, user);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
 
     }
@@ -59,11 +57,11 @@ public class BoardController {
     public ResponseEntity<BoardResponseDto> updateBoard(@PathVariable long boardId,
                                                         @RequestBody @Valid BoardRequestDto requestDto,
                                                         @RequestHeader(value = "RefreshToken") String refreshToken,
-                                                        @AuthenticationPrincipal UserPrincipal userDetails) {
+                                                        @LoginUser User loginUser) {
 
         // TODO 리프레시 토큰으로 유저 조회
         User user = userService.findUserByRefreshToken(refreshToken);
-        if (!user.equals(userDetails.getUser())) {
+        if (!user.equals(loginUser)) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
 
@@ -87,11 +85,11 @@ public class BoardController {
     @DeleteMapping("/{boardId}")
     public ResponseEntity deleteBoard(@PathVariable long boardId,
                                       @RequestHeader(value = "RefreshToken") String refreshToken,
-                                      @AuthenticationPrincipal UserPrincipal userDetails) {
+                                      @LoginUser User loginUser) {
 
         // TODO 리프레시 토큰으로 유저 조회
         User user = userService.findUserByRefreshToken(refreshToken);
-        if (!user.equals(userDetails.getUser())) {
+        if (!user.equals(loginUser)) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
 
@@ -111,15 +109,15 @@ public class BoardController {
 
     // TODO 초대 POST
     // TODO 어느 보드(boardId)에 누가(senderId) 누구(receiverId)를 초대함.
-    @PostMapping("/{boardId")
+    @PostMapping("/{boardId}")
     public ResponseEntity inviteToBoard(@PathVariable long boardId,
-                                                          @RequestBody @Valid InviteBoardRequestDto requestDto,
-                                                          @RequestHeader(value = "RefreshToken") String refreshToken,
-                                                          @AuthenticationPrincipal UserPrincipal userDetails) {
+                                        @RequestBody @Valid InviteBoardRequestDto requestDto,
+                                        @RequestHeader(value = "RefreshToken") String refreshToken,
+                                        @LoginUser User loginUser) {
         // senderId
         // TODO 가입되지 않은 사용자 user.findByRefreshToken == null
         User sender = userService.findUserByRefreshToken(refreshToken);
-        if (!sender.equals(userDetails.getUser())) {
+        if (!sender.equals(loginUser)) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
 
@@ -141,11 +139,11 @@ public class BoardController {
     // 내가 볼 수 있는 보드만 보여야 함.
     @GetMapping
     public ResponseEntity<List<BoardResponseDto>> getAllBoards(@RequestHeader(value = "RefreshToken") String refreshToken,
-                                                               @AuthenticationPrincipal UserPrincipal userDetails) {
+                                                               @LoginUser User loginUser) {
         // senderId
         // TODO 가입되지 않은 사용자 user.findByRefreshToken == null
         User user = userService.findUserByRefreshToken(refreshToken);
-        if (!user.equals(userDetails.getUser())) {
+        if (!user.equals(loginUser)) {
             throw new BusinessException(UNAUTHORIZED_USER);
         }
 
