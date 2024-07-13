@@ -10,49 +10,37 @@ import com.sparta.tentrillion.stat.Stat;
 import com.sparta.tentrillion.stat.StatRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CardService {
 
     private final CardRepository cardRepository;
     private final StatRepository statRepository;
-    private final
 
     public CardService(CardRepository cardRepository, StatRepository statRepository) {
         this.cardRepository = cardRepository;
         this.statRepository = statRepository;
     }
 
+    // 카드 생성
     public CreateCardResponseDto createCard(CreateCardRequestDto createCardRequestDto, Long statId) {
         if (createCardRequestDto.getTitle() == null || createCardRequestDto.getDescription() == null) {
-            throw new IllegalArgumentException("Title or Description are required");
+            throw new BusinessException(ErrorCode.INPUT_TITLE_DESCRIPTION);
         }
 
         Stat stat = statRepository.findById(statId).orElseThrow(
                 () -> new BusinessException(ErrorCode.NOT_FOUND)
         );
 
-
-        Card card = card.builder()
+        Card card = Card.builder()
                 .title(createCardRequestDto.getTitle())
                 .description(createCardRequestDto.getDescription())
                 .dueDate(createCardRequestDto.getDueDate())
                 .stat(stat)
-                .assignee()
+//                .assignee(user) -> UserDetailsImpl 에서 가져오기
                 .build();
-        return CreateCardResponseDto.
-    }
 
-    public List<Card> getAllCards() {
-        return cardRepository.findAll();
-    }
+        cardRepository.save(card);
 
-    public List<Card> getCardsByAssignee(String assignee) {
-        return cardRepository.findByAssignee(assignee);
-    }
-
-    public List<Card> getCardsByStats(Stat stat) {
-        return cardRepository.findByStats(stat);
+        return new CreateCardResponseDto(card);
     }
 }

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class CreateCardResponseDto {
+public class CardResponseDto {
 
     private Long id;
     private String title;
@@ -22,7 +22,7 @@ public class CreateCardResponseDto {
     private User creator;
 
     @Builder
-    public CreateCardResponseDto(Long id, String title, String description, LocalDate dueDate, LocalDateTime createdAt, LocalDateTime modifiedAt, User creator) {
+    public CardResponseDto(Long id, String title, String description, LocalDate dueDate, LocalDateTime createdAt, LocalDateTime modifiedAt, User creator) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -33,7 +33,7 @@ public class CreateCardResponseDto {
     }
 
     // Card Entity 이용해 CardResponseDto 객체를 생성하는 생성자
-    public CreateCardResponseDto(Card card) {
+    public CardResponseDto(Card card) {
         this.id = card.getId();
         this.title = card.getTitle();
         this.description = card.getDescription();

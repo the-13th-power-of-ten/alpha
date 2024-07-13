@@ -37,7 +37,7 @@ public class Card extends TimeStamp {
     private Stat stat;
 
     @ManyToOne
-    @JoinColumn(name = "asignee_id")
+    @JoinColumn(name = "assignee_id")
     private User assignee;
 
     @ManyToOne
