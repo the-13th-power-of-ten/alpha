@@ -1,7 +1,7 @@
-package com.sparta.tentrillion.stat;
+package com.sparta.tentrillion.stat.entity;
 
-import com.sparta.tentrillion.board.Board;
-import com.sparta.tentrillion.card.entity.Card;
+import com.sparta.tentrillion.board.entity.Board;
+import com.sparta.tentrillion.card.Card;
 import com.sparta.tentrillion.global.TimeStamp;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,4 +31,9 @@ public class Stat extends TimeStamp {
     @OneToMany(mappedBy = "stat", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Card> cards = new ArrayList<>();
+
+
+    public void updateStat(String title) {
+        this.title = title;
+    }
 }

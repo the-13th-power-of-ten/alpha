@@ -7,7 +7,6 @@ import com.sparta.tentrillion.card.repository.CardRepository;
 import com.sparta.tentrillion.global.exception.BusinessException;
 import com.sparta.tentrillion.global.exception.ErrorCode;
 import com.sparta.tentrillion.stat.Stat;
-import com.sparta.tentrillion.stat.StatRepository;
 import org.springframework.stereotype.Service;
 
 @Service
