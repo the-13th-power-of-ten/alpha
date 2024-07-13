@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.stat.entity;
 
-import com.sparta.tentrillion.board.Board;
+import com.sparta.tentrillion.board.entity.Board;
 import com.sparta.tentrillion.card.Card;
 import com.sparta.tentrillion.global.TimeStamp;
 import jakarta.persistence.*;
@@ -34,6 +34,6 @@ public class Stat extends TimeStamp {
 
 
     public void updateStat(String title) {
-        this.title =title;
+        this.title = title;
     }
 }
