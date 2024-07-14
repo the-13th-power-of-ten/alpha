@@ -52,7 +52,7 @@ public class UserService {
                 .email(userRequestDto.getEmail())
                 .nickname(userRequestDto.getNickname())
                 .role(role)
-                .status(User.Status.INACTIVITY)  // 이부분 ACTIVITY로 수정해야 로그인, stat 기능 구동됨
+                .status(User.Status.INACTIVITY)
                 .build();
 
         return userRepository.save(user);
