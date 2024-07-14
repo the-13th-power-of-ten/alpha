@@ -46,8 +46,7 @@ public class StatController {
     public ResponseEntity<StatResponseDto> deleteStat(@PathVariable(value = "boardId") Long boardId,
                                                       @PathVariable(value = "statId") Long statId,
                                                       @LoginUser User user) {
-        StatResponseDto statResponseDto = statService.deleteStat(boardId, statId, user);
-        return ResponseEntity.ok().body(statResponseDto);
+        return ResponseEntity.ok().body(statService.deleteStat(boardId, statId, user));
     }
     // stat 순서 변경
 
