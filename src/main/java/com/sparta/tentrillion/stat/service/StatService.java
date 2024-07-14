@@ -48,8 +48,9 @@ public class StatService {
         //board 찾기
         Board board = boardService.findBoardById(boardId);
         //stat 찾기
-        Stat stat = statRepository.findByBoardIdAndStatId(board, statId).orElseThrow(() ->
-                new BusinessException(ErrorCode.NOT_FOUND));
+        Stat stat = statRepository.findByBoardIdAndId(board.getId(), statId).orElseThrow(
+                () -> new BusinessException(ErrorCode.NOT_FOUND)
+        );
         //찾은 stat update
         stat.updateStat(statRequestDto.getTitle());
         return new StatResponseDto(stat);
@@ -63,8 +64,9 @@ public class StatService {
         //board 찾기
         Board board = boardService.findBoardById(boardId);
         // 해당 stat 찾기
-        Stat stat = statRepository.findById(statId).orElseThrow(() ->
-                new BusinessException(ErrorCode.NOT_FOUND));
+        Stat stat = statRepository.findByBoardIdAndId(board.getId(), statId).orElseThrow(
+                () -> new BusinessException(ErrorCode.NOT_FOUND)
+        );
         statRepository.delete(stat);
         return new StatResponseDto(stat);
     }

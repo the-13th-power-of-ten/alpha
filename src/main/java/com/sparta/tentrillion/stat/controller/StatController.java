@@ -1,5 +1,6 @@
 package com.sparta.tentrillion.stat.controller;
 
+import com.sparta.tentrillion.aop.Envelop;
 import com.sparta.tentrillion.global.argumentResolver.annotation.LoginUser;
 import com.sparta.tentrillion.stat.dto.StatRequestDto;
 import com.sparta.tentrillion.stat.dto.StatResponseDto;
@@ -19,6 +20,7 @@ public class StatController {
     private final StatService statService;
 
     // stat 생성
+    @Envelop("컬럼 생성입니다.")
     @PostMapping("/{boardId}/stats")
     public ResponseEntity<StatResponseDto> creatStat(@Valid @RequestBody StatRequestDto statRequestDto,
                                                      @PathVariable(value = "boardId") Long boardId
@@ -29,6 +31,7 @@ public class StatController {
     }
 
     // stat 수정
+    @Envelop("컬럼 수정입니다.")
     @PutMapping("/{boardId}/stats/{statId}")
     public ResponseEntity<StatResponseDto> updateStat(@Valid @RequestBody StatRequestDto statRequestDto,
                                                       @PathVariable(value = "boardId") Long boardId,
@@ -38,6 +41,7 @@ public class StatController {
     }
 
     // stat 삭제
+    @Envelop("컬럼 삭제입니다.")
     @DeleteMapping("/{boardId}/stats/{statId}")
     public ResponseEntity<StatResponseDto> deleteStat(@PathVariable(value = "boardId") Long boardId,
                                                       @PathVariable(value = "statId") Long statId,

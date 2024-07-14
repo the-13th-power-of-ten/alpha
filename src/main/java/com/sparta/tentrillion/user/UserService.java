@@ -52,7 +52,7 @@ public class UserService {
                 .email(userRequestDto.getEmail())
                 .nickname(userRequestDto.getNickname())
                 .role(role)
-                .status(User.Status.INACTIVITY)
+                .status(User.Status.INACTIVITY) //ACTIVITY로 변경해야 로그인, 컬럼 기능 구동
                 .build();
 
         return userRepository.save(user);
