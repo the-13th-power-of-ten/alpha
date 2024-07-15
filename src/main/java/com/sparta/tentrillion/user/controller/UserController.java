@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<User> createUser(@Valid @RequestBody UserRequestDto userRequestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userRequestDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
     @Envelop("로그인에 성공했습니다.")
