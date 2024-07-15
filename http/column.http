@@ -1,5 +1,41 @@
+### Variables 수정할 statId를 입력하면됩니다
+@boardId = 1
+@statId = 8
+
 ### GET request to example server
 GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
+
+### COLUMN 생성
+POST /api/board/{{boardId}}/stats
+Host: localhost:8080
+Content-Type: application/json
+Authorization:{{accessToken}}
+RefreshToken: {{refreshToken}}
+
+{
+  "title": "COLUMN생성입니다."
+}
+
 ###
+PUT /api/board/{{boardId}}/stats/{{statId}}
+Host: localhost:8080
+Content-Type: application/json
+Authorization: {{accessToken}}
+RefreshToken: {{refreshToken}}
+
+{
+  "title": "COLUMN 수정입니다."
+}
+
+###
+DELETE /api/board/{{boardId}}/stats/{{statId}}
+Host: localhost:8080
+Content-Type: application/json
+Authorization: {{accessToken}}
+RefreshToken: {{refreshToken}}
+
+{
+  "title": "COLUMN 삭제입니다."
+}
