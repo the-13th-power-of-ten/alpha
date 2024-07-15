@@ -27,25 +27,24 @@ public class CommentService {
         //user 찾기
         User user = userService.findByUsername(username);
         //card 찾기
-        Card card = cardRepository.findById(cardId).orElseThrow(()->
-                new BusinessException(ErrorCode.NOT_FOUND));
+        Card card = cardRepository.findById(cardId).orElseThrow(
+                ()-> new BusinessException(ErrorCode.NOT_FOUND)
+        );
         Comment comment = Comment.builder()
                 .description(commentRequestDto.getComment())
                 .user(user)
                 .card(card)
                 .build();
 
-        Comment saveComent = commentRepository.save(comment);
-
-        return new CommentResponseDto(saveComent);
+        return new CommentResponseDto(commentRepository.save(comment));
     }
 
     public List<CommentResponseDto> getComment(Long cardId) {
-        Card card = cardRepository.findById(cardId).orElseThrow(() ->
-                new BusinessException(ErrorCode.NOT_FOUND));
+        Card card = cardRepository.findById(cardId).orElseThrow(
+                () -> new BusinessException(ErrorCode.NOT_FOUND)
+        );
         List<Comment> commentList = commentRepository.findByCardId(card.getId());
         return commentList.stream().map(CommentResponseDto::new)
                 .toList();
-
     }
 }
