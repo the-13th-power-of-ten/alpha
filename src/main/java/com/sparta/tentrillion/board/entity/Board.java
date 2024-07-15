@@ -1,5 +1,6 @@
 package com.sparta.tentrillion.board.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.tentrillion.board.dto.request.BoardRequestDto;
 import com.sparta.tentrillion.global.TimeStamp;
 import com.sparta.tentrillion.user.User;
@@ -27,6 +28,7 @@ public class Board extends TimeStamp {
     private String description;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

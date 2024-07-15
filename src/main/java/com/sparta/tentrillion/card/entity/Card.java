@@ -1,5 +1,6 @@
 package com.sparta.tentrillion.card.entity;
 
+import com.sparta.tentrillion.card.dto.requestdto.CardRequestDto;
 import com.sparta.tentrillion.comment.entity.Comment;
 import com.sparta.tentrillion.global.TimeStamp;
 import com.sparta.tentrillion.stat.entity.Stat;
@@ -47,4 +48,10 @@ public class Card extends TimeStamp {
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Comment> comments = new ArrayList<>();
+
+    public void updateCard (CardRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.description = requestDto.getDescription();
+        this.dueDate = requestDto.getDueDate();
+    }
 }

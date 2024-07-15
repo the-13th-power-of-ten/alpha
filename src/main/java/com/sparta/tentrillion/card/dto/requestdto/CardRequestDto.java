@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @Getter
-public class CreateCardRequestDto {
+public class CardRequestDto {
 
     @NotBlank(message = "제목을 입력하세요.")
     private String title;
@@ -15,6 +15,4 @@ public class CreateCardRequestDto {
     private String description;
 
     private LocalDate dueDate;
-
-    private Long assigneeId;
 }

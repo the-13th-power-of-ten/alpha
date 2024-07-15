@@ -1,6 +1,7 @@
 package com.sparta.tentrillion.comment.service;
 
-import com.sparta.tentrillion.card.Card;
+import com.sparta.tentrillion.card.entity.Card;
+import com.sparta.tentrillion.card.repository.CardRepository;
 import com.sparta.tentrillion.comment.dto.CommentRequestDto;
 import com.sparta.tentrillion.comment.dto.CommentResponseDto;
 import com.sparta.tentrillion.comment.entity.Comment;
