@@ -1,4 +1,4 @@
-package com.sparta.tentrillion.user;
+package com.sparta.tentrillion.user.entity;
 
 import com.sparta.tentrillion.board.entity.Board;
 import com.sparta.tentrillion.global.TimeStamp;

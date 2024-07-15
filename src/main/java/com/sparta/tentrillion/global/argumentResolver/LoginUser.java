@@ -1,7 +1,7 @@
 package com.sparta.tentrillion.global.argumentResolver;
 
 import com.sparta.tentrillion.security.principal.UserPrincipal;
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

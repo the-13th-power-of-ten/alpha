@@ -8,9 +8,8 @@ import com.sparta.tentrillion.comment.entity.Comment;
 import com.sparta.tentrillion.comment.repository.CommentRepository;
 import com.sparta.tentrillion.global.exception.BusinessException;
 import com.sparta.tentrillion.global.exception.ErrorCode;
-import com.sparta.tentrillion.user.User;
-import com.sparta.tentrillion.user.UserRepository;
-import com.sparta.tentrillion.user.UserService;
+import com.sparta.tentrillion.user.entity.User;
+import com.sparta.tentrillion.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

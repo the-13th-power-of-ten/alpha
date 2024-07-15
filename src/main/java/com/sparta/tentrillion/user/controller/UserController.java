@@ -1,10 +1,12 @@
-package com.sparta.tentrillion.user;
+package com.sparta.tentrillion.user.controller;
 
 import com.sparta.tentrillion.aop.Envelop;
 import com.sparta.tentrillion.global.argumentResolver.annotation.LoginUser;
 import com.sparta.tentrillion.security.service.JwtService;
+import com.sparta.tentrillion.user.service.UserService;
 import com.sparta.tentrillion.user.dto.request.LoginRequestDto;
 import com.sparta.tentrillion.user.dto.request.UserRequestDto;
+import com.sparta.tentrillion.user.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

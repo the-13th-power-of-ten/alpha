@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.security.principal;
 
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

@@ -5,7 +5,7 @@ import com.sparta.tentrillion.global.argumentResolver.annotation.LoginUser;
 import com.sparta.tentrillion.stat.dto.StatRequestDto;
 import com.sparta.tentrillion.stat.dto.StatResponseDto;
 import com.sparta.tentrillion.stat.service.StatService;
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

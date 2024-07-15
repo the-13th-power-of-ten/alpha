@@ -8,7 +8,7 @@ import com.sparta.tentrillion.stat.dto.StatRequestDto;
 import com.sparta.tentrillion.stat.dto.StatResponseDto;
 import com.sparta.tentrillion.stat.entity.Stat;
 import com.sparta.tentrillion.stat.repository.StatRepository;
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
