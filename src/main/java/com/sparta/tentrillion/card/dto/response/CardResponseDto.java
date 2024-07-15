@@ -1,7 +1,6 @@
-package com.sparta.tentrillion.card.dto.responsedto;
+package com.sparta.tentrillion.card.dto.response;
 
 import com.sparta.tentrillion.card.entity.Card;
-import com.sparta.tentrillion.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

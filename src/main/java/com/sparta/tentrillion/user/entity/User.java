@@ -6,7 +6,6 @@ import com.sparta.tentrillion.global.TimeStamp;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

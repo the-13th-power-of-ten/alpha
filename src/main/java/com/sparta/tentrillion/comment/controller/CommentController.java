@@ -1,6 +1,5 @@
 package com.sparta.tentrillion.comment.controller;
 
-import com.fasterxml.jackson.databind.annotation.JsonValueInstantiator;
 import com.sparta.tentrillion.aop.Envelop;
 import com.sparta.tentrillion.comment.dto.CommentRequestDto;
 import com.sparta.tentrillion.comment.dto.CommentResponseDto;

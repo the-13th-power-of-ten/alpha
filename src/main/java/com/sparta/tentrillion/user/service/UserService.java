@@ -23,8 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static com.sparta.tentrillion.global.exception.ErrorCode.USER_NOT_FOUND;
-
 @Service
 @Getter
 @RequiredArgsConstructor

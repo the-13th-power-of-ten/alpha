@@ -1,15 +1,15 @@
 package com.sparta.tentrillion.card.service;
 
-import com.sparta.tentrillion.card.dto.requestdto.CardRequestDto;
-import com.sparta.tentrillion.card.dto.responsedto.CardResponseDto;
+import com.sparta.tentrillion.card.dto.request.CardRequestDto;
+import com.sparta.tentrillion.card.dto.response.CardResponseDto;
 import com.sparta.tentrillion.card.entity.Card;
 import com.sparta.tentrillion.card.repository.CardRepository;
 import com.sparta.tentrillion.global.exception.BusinessException;
 import com.sparta.tentrillion.global.exception.ErrorCode;
 import com.sparta.tentrillion.stat.entity.Stat;
 import com.sparta.tentrillion.stat.repository.StatRepository;
-import com.sparta.tentrillion.user.User;
-import com.sparta.tentrillion.user.UserRepository;
+import com.sparta.tentrillion.user.entity.User;
+import com.sparta.tentrillion.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

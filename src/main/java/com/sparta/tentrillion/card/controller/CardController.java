@@ -2,13 +2,13 @@ package com.sparta.tentrillion.card.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.tentrillion.aop.Envelop;
-import com.sparta.tentrillion.card.dto.requestdto.CardRequestDto;
-import com.sparta.tentrillion.card.dto.responsedto.CardResponseDto;
+import com.sparta.tentrillion.card.dto.request.CardRequestDto;
+import com.sparta.tentrillion.card.dto.response.CardResponseDto;
 import com.sparta.tentrillion.card.service.CardService;
 import com.sparta.tentrillion.global.argumentResolver.annotation.LoginUser;
 import com.sparta.tentrillion.stat.repository.StatRepository;
-import com.sparta.tentrillion.user.User;
-import com.sparta.tentrillion.user.UserRepository;
+import com.sparta.tentrillion.user.entity.User;
+import com.sparta.tentrillion.user.repository.UserRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

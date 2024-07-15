@@ -1,4 +1,4 @@
-package com.sparta.tentrillion.card.dto.requestdto;
+package com.sparta.tentrillion.card.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

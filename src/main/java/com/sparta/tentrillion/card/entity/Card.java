@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.card.entity;
 
-import com.sparta.tentrillion.card.dto.requestdto.CardRequestDto;
+import com.sparta.tentrillion.card.dto.request.CardRequestDto;
 import com.sparta.tentrillion.comment.entity.Comment;
 import com.sparta.tentrillion.global.TimeStamp;
 import com.sparta.tentrillion.stat.entity.Stat;
