@@ -44,4 +44,9 @@ public class UserController {
         userService.logout(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/manager-test")
+    public ResponseEntity<String> getManagertTest(@LoginUser User user) {
+        return ResponseEntity.status(HttpStatus.OK).body(user.getRole().toString());
+    }
 }
