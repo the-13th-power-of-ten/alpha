@@ -23,7 +23,17 @@ Content-Type: application/json
     client.global.set("refreshToken", response.headers.valueOf("RefreshToken"))
  %}
 
+### 로그아웃
+GET localhost:8080/users/logout
+Content-Type: application/json
+Authorization: {{accessToken}}
+RefreshToken: {{refreshToken}}
+
 ### test
 GET localhost:8080/test
 Content-Type: application/json
-Authorization: {{accessToken}}
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VybmFtZSIsImlhdCI6MTcyMDc2NDE4MSwiZXhwIjoxNzIwNzY3NzgxLCJpZCI6MSwiZW1haWwiOiJ1c2VyQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwic3RhdHVzIjoiQUNUSVZJVFkiLCJuaWNrbmFtZSI6Im5pY2tuYW1lIn0.4eMTDTajOe1Hjd4PdAwaamVp247I6WZrmnqUszYVith_vrmRZf6aFrKqKRBgeB0
+RefreshToken: {{refreshToken}}
+
+
+###
