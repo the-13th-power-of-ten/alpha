@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.security.principal;
 
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -49,7 +49,7 @@ public class UserPrincipal implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(
-                new SimpleGrantedAuthority("Role_" + user.getRole())
+                new SimpleGrantedAuthority("ROLE_" + user.getRole().toString())
         );
     }
 }

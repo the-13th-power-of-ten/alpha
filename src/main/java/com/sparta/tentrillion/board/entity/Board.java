@@ -3,7 +3,7 @@ package com.sparta.tentrillion.board.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.tentrillion.board.dto.request.BoardRequestDto;
 import com.sparta.tentrillion.global.TimeStamp;
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 

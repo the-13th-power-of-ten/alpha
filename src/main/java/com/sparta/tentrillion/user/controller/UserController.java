@@ -1,10 +1,12 @@
-package com.sparta.tentrillion.user;
+package com.sparta.tentrillion.user.controller;
 
 import com.sparta.tentrillion.aop.Envelop;
 import com.sparta.tentrillion.global.argumentResolver.annotation.LoginUser;
 import com.sparta.tentrillion.security.service.JwtService;
+import com.sparta.tentrillion.user.service.UserService;
 import com.sparta.tentrillion.user.dto.request.LoginRequestDto;
 import com.sparta.tentrillion.user.dto.request.UserRequestDto;
+import com.sparta.tentrillion.user.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -22,7 +24,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<User> createUser(@Valid @RequestBody UserRequestDto userRequestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userRequestDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
     @Envelop("로그인에 성공했습니다.")
@@ -43,5 +45,10 @@ public class UserController {
     public ResponseEntity<Void> logout(@LoginUser User user) {
         userService.logout(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/manager-test")
+    public ResponseEntity<String> getManagertTest(@LoginUser User user) {
+        return ResponseEntity.status(HttpStatus.OK).body(user.getRole().toString());
     }
 }

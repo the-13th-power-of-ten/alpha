@@ -1,4 +1,4 @@
-package com.sparta.tentrillion.user;
+package com.sparta.tentrillion.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.tentrillion.board.entity.Board;
@@ -66,4 +66,13 @@ public class User extends TimeStamp {
         ACTIVITY,
         INACTIVITY
     }
+
+    public void activate() {
+        this.status = Status.ACTIVITY;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
 }

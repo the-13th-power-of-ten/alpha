@@ -4,7 +4,7 @@ import com.sparta.tentrillion.card.dto.requestdto.CardRequestDto;
 import com.sparta.tentrillion.comment.entity.Comment;
 import com.sparta.tentrillion.global.TimeStamp;
 import com.sparta.tentrillion.stat.entity.Stat;
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
