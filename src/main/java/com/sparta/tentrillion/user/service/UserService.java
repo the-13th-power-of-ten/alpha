@@ -36,12 +36,12 @@ public class UserService {
     private final JwtService jwtService;
     private final static String MANAGER_CODE = "zhemtpwnfdpsmseoajflrkdlTek";
 
-    public User createUser(UserRequestDto userRequestDto) {
+    public void createUser(UserRequestDto userRequestDto) {
 
         User.Role role = User.Role.USER;
         // 존재 여부 확인
         if (isExist(userRequestDto.getUsername())) {
-            throw new IllegalArgumentException("이미 존재하는 아이디입니다");
+            throw new BusinessException(ErrorCode.ALREADY_EXISTING_USER);
         }
 
         // 매니저 권한 부여 확인
@@ -57,7 +57,7 @@ public class UserService {
                 .status(User.Status.INACTIVITY) //ACTIVITY로 변경해야 로그인, 컬럼 기능 구동
                 .build();
 
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     @Transactional
