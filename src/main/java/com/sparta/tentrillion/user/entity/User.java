@@ -1,10 +1,12 @@
 package com.sparta.tentrillion.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.tentrillion.board.entity.Board;
 import com.sparta.tentrillion.global.TimeStamp;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -44,6 +46,7 @@ public class User extends TimeStamp {
     private Status status;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Board> boards;
 
     public void updateRefreshToken(String refreshToken) {

@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.comment.entity;
 
-import com.sparta.tentrillion.card.Card;
+import com.sparta.tentrillion.card.entity.Card;
 import com.sparta.tentrillion.global.TimeStamp;
 import com.sparta.tentrillion.user.entity.User;
 import jakarta.persistence.*;

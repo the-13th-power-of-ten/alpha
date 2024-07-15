@@ -47,10 +47,12 @@ public class StatService {
         }
         //board 찾기
         Board board = boardService.findBoardById(boardId);
+
         //stat 찾기
         Stat stat = statRepository.findByBoardIdAndId(board.getId(), statId).orElseThrow(
                 () -> new BusinessException(ErrorCode.NOT_FOUND)
         );
+
         //찾은 stat update
         stat.updateStat(statRequestDto.getTitle());
         return new StatResponseDto(stat);

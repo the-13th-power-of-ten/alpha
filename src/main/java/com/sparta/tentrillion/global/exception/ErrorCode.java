@@ -38,6 +38,7 @@ public enum ErrorCode {
     // Column
 
     // Card
+    INPUT_TITLE_DESCRIPTION(HttpStatus.BAD_REQUEST, "TITLE OR DESCRIPTION ARE REQUIRED")
 
     // Comment
 
