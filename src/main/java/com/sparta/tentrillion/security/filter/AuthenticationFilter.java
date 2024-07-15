@@ -2,7 +2,7 @@ package com.sparta.tentrillion.security.filter;
 
 import com.sparta.tentrillion.security.principal.UserPrincipal;
 import com.sparta.tentrillion.security.service.JwtService;
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

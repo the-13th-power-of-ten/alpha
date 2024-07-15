@@ -5,7 +5,6 @@ import com.sparta.tentrillion.security.exception.AccessDeniedHandlerImpl;
 import com.sparta.tentrillion.security.exception.AuthenticationEntryPointImpl;
 import com.sparta.tentrillion.security.filter.AuthenticationFilter;
 import com.sparta.tentrillion.security.service.JwtService;
-import com.sparta.tentrillion.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
 package com.sparta.tentrillion.security.service;
 
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

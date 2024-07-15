@@ -1,7 +1,7 @@
-package com.sparta.tentrillion.user;
+package com.sparta.tentrillion.user.repository;
 
+import com.sparta.tentrillion.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
 package com.sparta.tentrillion.mail;
 
 import com.sparta.tentrillion.global.TimeStamp;
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

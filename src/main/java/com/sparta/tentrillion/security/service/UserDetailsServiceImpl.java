@@ -1,8 +1,8 @@
 package com.sparta.tentrillion.security.service;
 
 import com.sparta.tentrillion.security.principal.UserPrincipal;
-import com.sparta.tentrillion.user.User;
-import com.sparta.tentrillion.user.UserRepository;
+import com.sparta.tentrillion.user.entity.User;
+import com.sparta.tentrillion.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

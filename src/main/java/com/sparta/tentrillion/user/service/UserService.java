@@ -1,4 +1,4 @@
-package com.sparta.tentrillion.user;
+package com.sparta.tentrillion.user.service;
 
 import com.sparta.tentrillion.global.exception.BusinessException;
 import com.sparta.tentrillion.global.exception.ErrorCode;
@@ -6,6 +6,8 @@ import com.sparta.tentrillion.security.principal.UserPrincipal;
 import com.sparta.tentrillion.security.service.JwtService;
 import com.sparta.tentrillion.user.dto.request.LoginRequestDto;
 import com.sparta.tentrillion.user.dto.request.UserRequestDto;
+import com.sparta.tentrillion.user.entity.User;
+import com.sparta.tentrillion.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

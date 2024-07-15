@@ -2,7 +2,7 @@ package com.sparta.tentrillion.board.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sparta.tentrillion.board.entity.Board;
-import com.sparta.tentrillion.user.User;
+import com.sparta.tentrillion.user.entity.User;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
