@@ -1,5 +1,45 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
+### 카드 생성
+POST localhost:8080/cards/{{statId}}
+Content-Type: application/json
+Authorization: {{accessToken}}
+RefreshToken: {{refreshToken}}
 
-###
+{
+  "title" : "카드 제목",
+  "description": "카드 내용",
+  "dueDate": "2024-07-20"
+}
+
+> {%
+ client.global.set("cardId", response.body.result.id)
+ %}
+
+### 카드 수정
+PUT localhost:8080/cards/{{cardId}}
+Content-Type: application/json
+Authorization: {{accessToken}}
+RefreshToken: {{refreshToken}}
+
+{
+  "title" : "카드 제목 수정",
+  "description": "카드 내용 수정",
+  "dueDate": "2024-07-21"
+}
+
+### 카드 삭제
+DELETE localhost:8080/cards/{{cardId}}
+Content-Type: application/json
+Authorization: {{accessToken}}
+RefreshToken: {{refreshToken}}
+
+### 카드 전체 조회
+GET localhost:8080/cards
+Content-Type: application/json
+Authorization: {{accessToken}}
+RefreshToken: {{refreshToken}}
+
+### 컬럼별 카드 조회
+GET localhost:8080/cards/stats/{{statId}}
+Content-Type: application/json
+Authorization: {{accessToken}}
+RefreshToken: {{refreshToken}}

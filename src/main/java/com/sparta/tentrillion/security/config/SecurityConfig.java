@@ -54,8 +54,16 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(request -> request
                 .requestMatchers(HttpMethod.POST, "/users/signup").permitAll()
+                .requestMatchers(HttpMethod.POST, "/users/email").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/users/email/verification").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users/login").permitAll()
-                .requestMatchers(HttpMethod.GET, "/users/manager-test").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.POST, "/boards").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.PUT, "/boards/{boardId}").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.DELETE, "/boards/{boardId}").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.POST, "/boards/{boardId}").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.POST, "/api/board/{boardId}/stats").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.PUT, "/api/board/{boardId}/stats/{statId}").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.DELETE, "/api/board/{boardId}/stats/{statId}").hasRole("MANAGER")
                 .anyRequest().authenticated()
         );
 

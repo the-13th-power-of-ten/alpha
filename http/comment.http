@@ -1,8 +1,4 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
-
-###COLUMN 생성
+### 댓글 생성
 POST /api/cards/{{cardId}}/comments
 Host: localhost:8080
 Content-Type: application/json
@@ -13,7 +9,7 @@ RefreshToken: {{refreshToken}}
   "comment": "댓글 생성입니다."
 }
 
-###COLUMN 조회
+### 댓글 조회
 GET /api/cards/{{cardId}}/comments
 Host: localhost:8080
 Content-Type: application/json

@@ -51,7 +51,7 @@ public class MailService {
         String targetCode = mail.getCode();
         String code = verifyRequestDto.getCode();
 
-        if(timeLimit.isAfter(localDateTime)){
+        if(localDateTime.isAfter(timeLimit)){
             throw new BusinessException(ErrorCode.CODE_EXPIRED);
         }
 
@@ -60,8 +60,6 @@ public class MailService {
         } else {
             throw new BusinessException(ErrorCode.INVALID_CODE);
         }
-
-
     }
 
     // 이메일 폼: 내용, 보낸이, 받을이, 제목
@@ -72,7 +70,6 @@ public class MailService {
         MimeMessage message = javaMailSender.createMimeMessage();
 
         try {
-
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
             String senderEmail = "user@gmail.com";
             messageHelper.setFrom(senderEmail);
@@ -117,7 +114,6 @@ public class MailService {
         } else {
             mail = Mail.builder()
                     .user(user)
-
                     .build();
         }
         return mail;

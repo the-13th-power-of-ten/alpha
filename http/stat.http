@@ -1,12 +1,3 @@
-### Variables 수정할 statId를 입력하면됩니다
-@boardId = 1
-@statId = 8
-
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
-
-
 ### COLUMN 생성
 POST /api/board/{{boardId}}/stats
 Host: localhost:8080
@@ -17,6 +8,10 @@ RefreshToken: {{refreshToken}}
 {
   "title": "COLUMN생성입니다."
 }
+
+> {%
+ client.global.set("statId", response.body.result.statId)
+ %}
 
 ###
 PUT /api/board/{{boardId}}/stats/{{statId}}
