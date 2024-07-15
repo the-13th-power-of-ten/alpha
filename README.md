@@ -78,7 +78,7 @@ SMTP_APP_PASSWORD={value}
 <div id="f">
 
 # 📑 ERD DIAGRAM
-![image](https://github.com/user-attachments/assets/7ac6f8cc-0d8b-4e05-a4d7-069c11b2ee95)
+![image](https://github.com/user-attachments/assets/27c50488-db91-4d25-96a6-fc149ce55aa7)
 
 <br>
 
