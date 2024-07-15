@@ -63,4 +63,13 @@ public class User extends TimeStamp {
         ACTIVITY,
         INACTIVITY
     }
+
+    public void activate() {
+        this.status = Status.ACTIVITY;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
 }
