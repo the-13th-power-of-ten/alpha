@@ -49,7 +49,7 @@ public class UserPrincipal implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(
-                new SimpleGrantedAuthority("Role_" + user.getRole())
+                new SimpleGrantedAuthority("ROLE_" + user.getRole().toString())
         );
     }
 }

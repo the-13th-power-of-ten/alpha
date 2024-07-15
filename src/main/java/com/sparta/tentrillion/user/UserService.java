@@ -21,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+import static com.sparta.tentrillion.global.exception.ErrorCode.USER_NOT_FOUND;
+
 @Service
 @Getter
 @RequiredArgsConstructor
@@ -50,7 +52,7 @@ public class UserService {
                 .email(userRequestDto.getEmail())
                 .nickname(userRequestDto.getNickname())
                 .role(role)
-                .status(User.Status.INACTIVITY)
+                .status(User.Status.INACTIVITY) //ACTIVITY로 변경해야 로그인, 컬럼 기능 구동
                 .build();
 
         return userRepository.save(user);
@@ -106,13 +108,13 @@ public class UserService {
         user.updateRefreshToken(null);
     }
 
-    private  User findByRefreshToken(String refreshToken) {
+    public User findByRefreshToken(String refreshToken) {
         return userRepository.findByRefreshtoken(refreshToken).orElseThrow(
                 () -> new BusinessException(ErrorCode.USER_NOT_FOUND)
         );
     }
 
-    private User findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(
                 () -> new BusinessException(ErrorCode.USER_NOT_FOUND)
         );
