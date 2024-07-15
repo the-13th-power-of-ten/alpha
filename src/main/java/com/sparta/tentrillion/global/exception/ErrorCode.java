@@ -16,6 +16,12 @@ public enum ErrorCode {
     // User
     USER_INACTIVITY(HttpStatus.FORBIDDEN, "USER STATUS IS INACTIVITY"),
     FAIL_AUTHENTICATION(HttpStatus.BAD_REQUEST, "USERNAME OR PASSWORD IS NOT CORRECT"),
+    USERNAME_NOT_FOUND(HttpStatus.NOT_FOUND, "사용자를 찾을 수 없습니다."),
+
+    // Email
+    FAIL_EMAIL(HttpStatus.BAD_REQUEST, "잘못된 이메일입니다."),
+    CODE_EXPIRED(HttpStatus.BAD_REQUEST,"만료된 인증 코드입니다."),
+    INVALID_CODE(HttpStatus.BAD_REQUEST, "잘못된 코드입니다."),
 
     //Board
 
